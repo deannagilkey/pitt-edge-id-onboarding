@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pitt EDGE Instructional Designer Onboarding Course &mdash; In Progress</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E1A2B;
+  --navy-deep:#001F3F;
+  --navy:#00376B;
+  --blue:#0B4FA3;
+  --gold:#FFB81C;
+  --gold-deep:#C98A00;
+  --paper:#F6F7F9;
+  --panel:#FFFFFF;
+  --muted:#5B6472;
+  --line:#E1E4EA;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ink:#EAEDF2;
+    --navy-deep:#00152A;
+    --navy:#062A4D;
+    --blue:#4C8DE0;
+    --gold:#FFC94D;
+    --gold-deep:#FFB81C;
+    --paper:#0B1220;
+    --panel:#121A2B;
+    --muted:#9AA5B5;
+    --line:#223049;
+  }
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:'IBM Plex Sans', -apple-system, sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+}
+h1,h2,h3{
+  font-family:'Source Serif 4', Georgia, serif;
+  margin:0;
+  color:var(--ink);
+}
+p{margin:0 0 1em 0; max-width:66ch;}
+a{color:var(--blue);}
+img{max-width:100%;display:block;}
+
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--gold);color:var(--navy-deep);padding:.6em 1em;z-index:200;}
+.skip-link:focus{left:1em;top:1em;}
+
+.status-banner{
+  background:#FFF4DE;
+  border-bottom:1px solid #F0D9A8;
+  color:#6B4E00;
+  text-align:center;
+  font-size:.88rem;
+  font-weight:600;
+  padding:.65em 1em;
+}
+@media (prefers-color-scheme: dark){
+  .status-banner{background:#2A2110;border-bottom-color:#4A3A15;color:#F0D9A8;}
+}
+
+.hero{
+  background:linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%);
+  color:#F4F6FA;
+  padding:4rem 1.5rem 3.5rem;
+}
+.hero-inner{max-width:1180px;margin:0 auto;}
+.eyebrow-pill{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--navy-deep);
+  font-family:'IBM Plex Sans',sans-serif;
+  font-weight:600;
+  font-size:.8rem;
+  letter-spacing:.02em;
+  padding:.35em 1em;
+  border-radius:999px;
+  margin-bottom:1.4rem;
+}
+.hero h1{
+  font-size:clamp(2rem, 4vw, 3rem);
+  font-weight:600;
+  line-height:1.17;
+  max-width:19ch;
+  color:#fff;
+}
+.hero .dek{
+  margin-top:1.3rem;
+  font-size:1.1rem;
+  max-width:62ch;
+  color:#C9D6E8;
+}
+.hero .dek strong{color:#fff;font-weight:600;}
+.byline{
+  margin-top:1.3rem;
+  font-size:1rem;
+  font-weight:600;
+  color:var(--gold);
+}
+.stat-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:2.4rem;
+  margin-top:2.2rem;
+}
+.stat-row div{min-width:120px;}
+.stat-num{font-family:'Source Serif 4',serif;font-size:2rem;color:var(--gold);line-height:1;}
+.stat-label{font-size:.85rem;color:#9FB0C8;margin-top:.3rem;}
+
+.edit-note{max-width:1180px;margin:0 auto; padding: 0 1.5rem;}
+.edit-note p{font-size:.85rem;color:var(--muted);margin-top:1.2rem;max-width:70ch;}
+.edit-note a{font-weight:600;text-decoration:none;}
+.edit-note a:hover{text-decoration:underline;}
+
+.layout{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 1.5rem;
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:3rem;
+  align-items:start;
+}
+@media (max-width:860px){ .layout{grid-template-columns:1fr;} }
+
+.sidenav{
+  position:sticky;
+  top:0;
+  padding-top:2.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:.1rem;
+}
+@media (max-width:860px){
+  .sidenav{
+    position:static;
+    flex-direction:row;
+    overflow-x:auto;
+    gap:.4rem;
+    padding:1rem 0;
+    border-bottom:1px solid var(--line);
+    -webkit-overflow-scrolling:touch;
+  }
+}
+.nav-link{
+  font-size:.88rem;
+  color:var(--muted);
+  text-decoration:none;
+  padding:.5em .2em;
+  border-left:2px solid transparent;
+  padding-left:.9em;
+  white-space:nowrap;
+  transition:color .15s, border-color .15s;
+}
+.nav-link:hover{color:var(--blue);}
+.nav-link.active{color:var(--navy);font-weight:600;border-left-color:var(--gold);}
+@media (max-width:860px){
+  .nav-link{border-left:none;border-bottom:2px solid transparent;padding:.4em .7em;}
+  .nav-link.active{border-bottom-color:var(--gold);}
+}
+
+main{padding-top:2.5rem; padding-bottom:4rem; min-width:0;}
+
+.module{
+  padding:2.6rem 0;
+  border-bottom:1px solid var(--line);
+  scroll-margin-top:1.2rem;
+}
+.module:last-child{border-bottom:none;}
+.module-head{margin-bottom:1rem;}
+.pill{
+  display:inline-block;
+  font-size:.74rem;
+  font-weight:600;
+  letter-spacing:.02em;
+  color:var(--navy-deep);
+  background:var(--gold);
+  padding:.28em .85em;
+  border-radius:999px;
+  margin-bottom:.7rem;
+}
+@media (prefers-color-scheme: dark){ .pill{color:#1a1200;} }
+.module h2{font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:600;max-width:28ch;}
+.module-intro{margin-top:.9rem;color:var(--ink);}
+.module-intro p{color:var(--ink);}
+
+.shot-grid{
+  margin-top:1.6rem;
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:1.4rem;
+}
+@media (max-width:900px){ .shot-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:600px){ .shot-grid{grid-template-columns:1fr;} }
+
+.shot{
+  margin:0;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:4px;
+  overflow:hidden;
+  cursor:zoom-in;
+  transition:border-color .15s, transform .15s;
+}
+.shot:hover, .shot:focus-visible{border-color:var(--blue); transform:translateY(-2px);}
+.shot:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+.shot-frame{
+  aspect-ratio:4/3.1;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.shot-frame img{width:100%;height:100%;object-fit:contain;}
+.shot figcaption{
+  padding:.85em 1em 1.05em;
+  font-size:.86rem;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.lightbox{
+  position:fixed;inset:0;
+  background:rgba(5,10,20,.88);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:2rem;
+  z-index:300;
+}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:100%;max-height:85vh;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.lightbox-close{
+  position:absolute;top:1.2rem;right:1.4rem;
+  background:none;border:none;color:#fff;
+  font-size:1.8rem;line-height:1;cursor:pointer;
+  width:44px;height:44px;
+}
+.lightbox-cap{
+  position:absolute;bottom:1.4rem;left:50%;transform:translateX(-50%);
+  color:#D8E0EC;font-size:.9rem;max-width:70ch;text-align:center;padding:0 1rem;
+}
+
+footer{
+  background:var(--navy-deep);
+  color:#B9C6DA;
+  padding:3rem 1.5rem;
+}
+footer .footer-inner{max-width:1180px;margin:0 auto;}
+footer h3{color:#fff;font-weight:600;font-size:1.2rem;margin-bottom:.7rem;}
+footer p{color:#B9C6DA;max-width:60ch;}
+footer a{color:var(--gold);}
+footer .contact{margin-top:1.2rem;font-size:.9rem;color:#DCE4D8;font-weight:500;}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<div class="status-banner">&#9888; This course is in active development &mdash; Modules 0&ndash;4 and a new Pitt Professional module are complete below; remaining modules are in progress.</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow-pill">Pitt EDGE &middot; Instructional Designer Onboarding</span>
+    <h1>Onboarding the Next Pitt EDGE Instructional Designer</h1>
+    <p class="dek">An 11-module Canvas course built to train new instructional designers during their first 30&ndash;90 days and serve as an <strong>ongoing performance-support resource</strong> long after that.</p>
+    <p class="byline">Deanna Gilkey Schmuck, MS &middot; Learning Experience Designer</p>
+    <div class="stat-row">
+      <div><div class="stat-num">12</div><div class="stat-label">planned modules</div></div>
+      <div><div class="stat-num">6</div><div class="stat-label">built out in full so far</div></div>
+      <div><div class="stat-num">43</div><div class="stat-label">built activities &amp; guides</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="edit-note">
+  <p><a href="https://deannagilkey.github.io/instructional-design-portfolio/" target="_blank" rel="noopener">&larr; Back to full portfolio</a> &middot; <a href="https://www.linkedin.com/in/deanna-gilkey-schmuck-ms-70217313" target="_blank" rel="noopener">Connect on LinkedIn &rarr;</a></p>
+</div>
+
+<div class="layout">
+  <nav class="sidenav" aria-label="Module navigation">
+          <a class="nav-link" href="#overview" data-target="overview">Overview</a>
+          <a class="nav-link" href="#course-map" data-target="course-map">Course Map</a>
+          <a class="nav-link" href="#module-0" data-target="module-0">Module 0</a>
+          <a class="nav-link" href="#module-1" data-target="module-1">Module 1</a>
+          <a class="nav-link" href="#module-2" data-target="module-2">Module 2</a>
+          <a class="nav-link" href="#module-3" data-target="module-3">Module 3</a>
+          <a class="nav-link" href="#module-4" data-target="module-4">Module 4</a>
+          <a class="nav-link" href="#pitt-professional" data-target="pitt-professional">Pitt Professional</a>
+  </nav>
+
+  <main id="main-content">
+
+      <section class="module" id="overview">
+        <div class="module-head">
+          <span class="pill">Course Overview</span>
+          <h2>A Performance-Support Course for New Pitt EDGE Designers</h2>
+        </div>
+        <div class="module-intro">
+          <p>This Canvas course onboards new Pitt EDGE instructional designers during their first 30&ndash;90 days, then stays in place afterward as an ongoing performance-support resource &mdash; the same page a designer returns to six months in when they forget which SharePoint site holds the project template.</p>
+          <p><strong>This course is still in development.</strong> Modules 0 through 4 are built out below in full, along with a new Pitt Professional module added after the original map was set. The remaining modules are structured in Canvas already and are being built out next; the course closes with a knowledge check and a certificate.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/onb-course-overview.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-course-overview.png" alt="The course&#x27;s own front door: what it&#x27;s for, how it&#x27;s structured, and how to navigate it &amp;mdash; set once, at the start, instead of repeated module by module." loading="lazy"></div>
+            <figcaption>The course's own front door: what it's for, how it's structured, and how to navigate it &mdash; set once, at the start, instead of repeated module by module.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="course-map">
+        <div class="module-head">
+          <span class="pill">Full Scope</span>
+          <h2>The Full Course Map</h2>
+        </div>
+        <div class="module-intro">
+          <p>Modules 0 through 10, shown here as they exist in Canvas today. This is the real module list, not a planning document &mdash; every title below is a page a new designer will actually open.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/onb-map-module0.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-map-module0.png" alt="Module 0 &amp;mdash; orientation: mission, team, expectations, communication, mandatory trainings, and technology access." loading="lazy"></div>
+            <figcaption>Module 0 &mdash; orientation: mission, team, expectations, communication, mandatory trainings, and technology access.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-map-module1-2.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-map-module1-2.png" alt="Module 1 &amp;mdash; EDGE&#x27;s programs and partnerships; Module 2 &amp;mdash; the course development lifecycle, from kickoff through handoffs." loading="lazy"></div>
+            <figcaption>Module 1 &mdash; EDGE's programs and partnerships; Module 2 &mdash; the course development lifecycle, from kickoff through handoffs.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-map-module3.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-map-module3.png" alt="Module 3 &amp;mdash; starting and managing a project, from intake through archiving a finished development." loading="lazy"></div>
+            <figcaption>Module 3 &mdash; starting and managing a project, from intake through archiving a finished development.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-map-module4.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-map-module4.png" alt="Module 4 &amp;mdash; developing courses in Canvas, including the EDGE master template and DesignPLUS." loading="lazy"></div>
+            <figcaption>Module 4 &mdash; developing courses in Canvas, including the EDGE master template and DesignPLUS.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-map-module5-6.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-map-module5-6.png" alt="Module 5 &amp;mdash; the technology stack and interactive learning objects; Module 6 &amp;mdash; multimedia, captioning, and AI policy." loading="lazy"></div>
+            <figcaption>Module 5 &mdash; the technology stack and interactive learning objects; Module 6 &mdash; multimedia, captioning, and AI policy.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-map-module8-9.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-map-module8-9.png" alt="Module 8 &amp;mdash; quality assurance and launch; Module 9 &amp;mdash; course maintenance, revisions, and redesigns." loading="lazy"></div>
+            <figcaption>Module 8 &mdash; quality assurance and launch; Module 9 &mdash; course maintenance, revisions, and redesigns.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m10-certificate.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m10-certificate.png" alt="Module 10 closes the course with a knowledge check and a certificate issued through a Qualtrics survey &amp;mdash; a real credential, not just a completion checkbox." loading="lazy"></div>
+            <figcaption>Module 10 closes the course with a knowledge check and a certificate issued through a Qualtrics survey &mdash; a real credential, not just a completion checkbox.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-0">
+        <div class="module-head">
+          <span class="pill">Module 0</span>
+          <h2>Onboarding & Operations</h2>
+        </div>
+        <div class="module-intro">
+          <p>Everything a new designer needs before touching a course build: who's who, how the team communicates, what's mandatory, and what technology they'll have access to. The module front-loads logistics so later modules can stay focused on actual design and development work.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/onb-m0-mission.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m0-mission.png" alt="Opens with EDGE&#x27;s mission and guiding principles before any process detail &amp;mdash; the same pattern used across every module in this course." loading="lazy"></div>
+            <figcaption>Opens with EDGE's mission and guiding principles before any process detail &mdash; the same pattern used across every module in this course.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m0-pittonline-personas.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m0-pittonline-personas.png" alt="Draws a clear line between Pitt EDGE (internal service unit) and Pitt Online (external brand), then grounds that distinction in four real learner personas." loading="lazy"></div>
+            <figcaption>Draws a clear line between Pitt EDGE (internal service unit) and Pitt Online (external brand), then grounds that distinction in four real learner personas.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m0-team.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m0-team.png" alt="A role-by-role map of everyone a new designer will work with &amp;mdash; faculty, leadership, enrollment, marketing, operations, QA &amp;mdash; not just the instructional design team." loading="lazy"></div>
+            <figcaption>A role-by-role map of everyone a new designer will work with &mdash; faculty, leadership, enrollment, marketing, operations, QA &mdash; not just the instructional design team.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m0-sharepoint-meetings.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m0-sharepoint-meetings.png" alt="Names the two SharePoint sites a new hire needs and why they&#x27;re separate, then sets expectations for recurring 1:1 and team meetings from week one." loading="lazy"></div>
+            <figcaption>Names the two SharePoint sites a new hire needs and why they're separate, then sets expectations for recurring 1:1 and team meetings from week one.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m0-outlook.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m0-outlook.png" alt="A real annotated screenshot of the shared team calendar, because &#x27;share your calendar with your supervisor&#x27; means something different to every new hire until they see it." loading="lazy"></div>
+            <figcaption>A real annotated screenshot of the shared team calendar, because 'share your calendar with your supervisor' means something different to every new hire until they see it.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m0-zoom.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m0-zoom.png" alt="Covers Pitt-branded virtual backgrounds and email signature standards &amp;mdash; the small professional-presence details that don&#x27;t fit anywhere else but still matter." loading="lazy"></div>
+            <figcaption>Covers Pitt-branded virtual backgrounds and email signature standards &mdash; the small professional-presence details that don't fit anywhere else but still matter.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m0-trainings.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m0-trainings.png" alt="Lists every mandatory compliance training by the system that delivers it (KnowBe4, Vector LMS, Canvas), so a new hire knows where to look when a notification arrives." loading="lazy"></div>
+            <figcaption>Lists every mandatory compliance training by the system that delivers it (KnowBe4, Vector LMS, Canvas), so a new hire knows where to look when a notification arrives.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m0-forms.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m0-forms.png" alt="A single checklist of every onboarding form to complete, each with a one-line explanation of what it&#x27;s actually for." loading="lazy"></div>
+            <figcaption>A single checklist of every onboarding form to complete, each with a one-line explanation of what it's actually for.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m0-technology.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m0-technology.png" alt="The full technology access map organized by function &amp;mdash; collaboration, learning platforms, media, project management, design, AI, specialty tools &amp;mdash; so new hires know what to request and why." loading="lazy"></div>
+            <figcaption>The full technology access map organized by function &mdash; collaboration, learning platforms, media, project management, design, AI, specialty tools &mdash; so new hires know what to request and why.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-1">
+        <div class="module-head">
+          <span class="pill">Module 1</span>
+          <h2>Pitt EDGE Programs & Partnerships</h2>
+        </div>
+        <div class="module-intro">
+          <p>Grounds a new designer in the actual academic landscape they'll support &mdash; real schools, real programs, real staffing models &mdash; before any process training begins. A designer who knows what OneID, Pillar, and Legacy programs actually are can prioritize their own work correctly from day one.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/onb-m1-program-portfolio.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m1-program-portfolio.png" alt="Walks through EDGE&#x27;s three-phase program intake process &amp;mdash; request, discovery, chartering &amp;mdash; with the actual Airtable request form shown, not just described." loading="lazy"></div>
+            <figcaption>Walks through EDGE's three-phase program intake process &mdash; request, discovery, chartering &mdash; with the actual Airtable request form shown, not just described.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m1-schools-units.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m1-schools-units.png" alt="Orients a new designer to Pitt&#x27;s academic structure itself, since every program they&#x27;ll support belongs to one of these schools or units." loading="lazy"></div>
+            <figcaption>Orients a new designer to Pitt's academic structure itself, since every program they'll support belongs to one of these schools or units.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m1-partner-schools.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m1-partner-schools.png" alt="Explains the OneID staffing model &amp;mdash; which schools get a dedicated designer versus drawing from EDGE&#x27;s shared pool &amp;mdash; with real headcounts, not an abstract policy." loading="lazy"></div>
+            <figcaption>Explains the OneID staffing model &mdash; which schools get a dedicated designer versus drawing from EDGE's shared pool &mdash; with real headcounts, not an abstract policy.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m1-pilot-initiatives.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m1-pilot-initiatives.png" alt="A real pilot program (RN to BSN at Pitt-Bradford) used as a concrete case: credit count, intake schedule, class size, and launch date, not a hypothetical." loading="lazy"></div>
+            <figcaption>A real pilot program (RN to BSN at Pitt-Bradford) used as a concrete case: credit count, intake schedule, class size, and launch date, not a hypothetical.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m1-pillar-legacy.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m1-pillar-legacy.png" alt="Distinguishes EDGE&#x27;s strategic Pillar programs from its Legacy programs &amp;mdash; a distinction that changes how a designer should prioritize and scope their work." loading="lazy"></div>
+            <figcaption>Distinguishes EDGE's strategic Pillar programs from its Legacy programs &mdash; a distinction that changes how a designer should prioritize and scope their work.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m1-legacy-law.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m1-legacy-law.png" alt="Continues the Legacy program list through the School of Law&#x27;s five-credential portfolio, showing how one school can anchor multiple stacked offerings." loading="lazy"></div>
+            <figcaption>Continues the Legacy program list through the School of Law's five-credential portfolio, showing how one school can anchor multiple stacked offerings.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m1-other-programs.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m1-other-programs.png" alt="Rounds out the program landscape with three more emerging degrees, each summarized by what it prepares learners to do, not just its credit count." loading="lazy"></div>
+            <figcaption>Rounds out the program landscape with three more emerging degrees, each summarized by what it prepares learners to do, not just its credit count.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-2">
+        <div class="module-head">
+          <span class="pill">Module 2</span>
+          <h2>Course Development Lifecycle</h2>
+        </div>
+        <div class="module-intro">
+          <p>The four-phase methodology every course built at Pitt EDGE follows: Design &rarr; Develop &rarr; Deploy/Term Prep &rarr; Launch. Each phase is anchored to a named checkpoint and a single deliverable that defines what 'done' actually means, so handoffs between faculty, designers, and QA don't depend on anyone's memory.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/onb-m2-design-phase.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m2-design-phase.png" alt="The Design phase of EDGE&#x27;s four-phase course lifecycle, each activity paired with its own named checkpoint and a single deliverable that defines &#x27;done.&#x27;" loading="lazy"></div>
+            <figcaption>The Design phase of EDGE's four-phase course lifecycle, each activity paired with its own named checkpoint and a single deliverable that defines 'done.'</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m2-develop-phase.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m2-develop-phase.png" alt="The Develop phase visualized as a five-step build-review-revise loop, making clear that faculty review isn&#x27;t a single gate but a repeating cycle." loading="lazy"></div>
+            <figcaption>The Develop phase visualized as a five-step build-review-revise loop, making clear that faculty review isn't a single gate but a repeating cycle.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/onb-m2-deploy-launch.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/onb-m2-deploy-launch.png" alt="Deploy/Term Prep and Launch close the lifecycle &amp;mdash; QA, accessibility scoring, and a defined two-week hypercare window after the course goes live." loading="lazy"></div>
+            <figcaption>Deploy/Term Prep and Launch close the lifecycle &mdash; QA, accessibility scoring, and a defined two-week hypercare window after the course goes live.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-3">
+        <div class="module-head">
+          <span class="pill">Module 3</span>
+          <h2>Starting & Managing a Project</h2>
+        </div>
+        <div class="module-intro">
+          <p>Instructional designers at Pitt EDGE serve as project managers for their own course developments &mdash; coordinating faculty, deliverables, timelines, reviews, and handoffs from kickoff through launch. This module covers what to review when a new assignment lands, the systems used to track it, and how to close it out cleanly when it's done.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/m3-intro.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-intro.png" alt="Frames the ID explicitly as a project manager, with a Project Manager above them only for larger program-level work &amp;mdash; the day-to-day course development stays owned by the designer." loading="lazy"></div>
+            <figcaption>Frames the ID explicitly as a project manager, with a Project Manager above them only for larger program-level work &mdash; the day-to-day course development stays owned by the designer.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-new-assignment.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-new-assignment.png" alt="A six-part intake checklist &amp;mdash; program, course, faculty, project type, timeline, and known media needs &amp;mdash; reviewed before the first conversation with faculty, not during it." loading="lazy"></div>
+            <figcaption>A six-part intake checklist &mdash; program, course, faculty, project type, timeline, and known media needs &mdash; reviewed before the first conversation with faculty, not during it.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-pm-systems.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-pm-systems.png" alt="Introduces the Airtable Course Development Tracker, with typical timelines named explicitly: revisions in one term, new developments spanning 1.5&amp;ndash;2 terms." loading="lazy"></div>
+            <figcaption>Introduces the Airtable Course Development Tracker, with typical timelines named explicitly: revisions in one term, new developments spanning 1.5&ndash;2 terms.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-team-projects.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-team-projects.png" alt="A real view of the Team Projects Airtable workspace, with field-by-field explanations of what Progress, Subtasks, and Project Lead actually drive. Names and emails redacted for this portfolio." loading="lazy"></div>
+            <figcaption>A real view of the Team Projects Airtable workspace, with field-by-field explanations of what Progress, Subtasks, and Project Lead actually drive. Names and emails redacted for this portfolio.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-course-dev-tracking.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-course-dev-tracking.png" alt="The companion Course Development Tracking base, showing how views let a designer filter to just their own courses or revisions across a shared dataset. Names redacted for this portfolio." loading="lazy"></div>
+            <figcaption>The companion Course Development Tracking base, showing how views let a designer filter to just their own courses or revisions across a shared dataset. Names redacted for this portfolio.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-sharepoint-structure.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-sharepoint-structure.png" alt="The standard six-folder structure every course workspace gets, with explicit guidance on what belongs in each &amp;mdash; so project records stay findable after the designer who built them has moved on." loading="lazy"></div>
+            <figcaption>The standard six-folder structure every course workspace gets, with explicit guidance on what belongs in each &mdash; so project records stay findable after the designer who built them has moved on.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-core-systems.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-core-systems.png" alt="A single flowchart tying every system together in build order: SharePoint for records, the Canvas DEV shell for building, Airtable and Panopto for media, BugHerd for faculty review, then production." loading="lazy"></div>
+            <figcaption>A single flowchart tying every system together in build order: SharePoint for records, the Canvas DEV shell for building, Airtable and Panopto for media, BugHerd for faculty review, then production.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-documentation-tools.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-documentation-tools.png" alt="Doesn&#x27;t mandate one documentation method &amp;mdash; shows three real approaches (running Word doc, running slide deck, OneNote notebook) so designers can pick what fits how they work." loading="lazy"></div>
+            <figcaption>Doesn't mandate one documentation method &mdash; shows three real approaches (running Word doc, running slide deck, OneNote notebook) so designers can pick what fits how they work.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-followup.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-followup.png" alt="Closes the module on the human part of project management: sending meeting summaries, confirming responsibilities before anyone leaves the room, and documenting the reasoning behind decisions, not just the decisions themselves." loading="lazy"></div>
+            <figcaption>Closes the module on the human part of project management: sending meeting summaries, confirming responsibilities before anyone leaves the room, and documenting the reasoning behind decisions, not just the decisions themselves.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-4">
+        <div class="module-head">
+          <span class="pill">Module 4</span>
+          <h2>Developing Courses in Canvas</h2>
+        </div>
+        <div class="module-intro">
+          <p>The operational core of the course: how a designer actually builds in Canvas at Pitt EDGE. Covers the three platforms in play, the three Canvas environments, shell naming and promotion, the master template, and the two tools (DesignPLUS and UDOIT) that shape and check the final build.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/m4-platforms-overview.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m4-platforms-overview.png" alt="Distinguishes Canvas, Pitt Professional, and Coursera by audience and ownership &amp;mdash; critical context before a designer assumes every course lives in the same system." loading="lazy"></div>
+            <figcaption>Distinguishes Canvas, Pitt Professional, and Coursera by audience and ownership &mdash; critical context before a designer assumes every course lives in the same system.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m4-intro.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m4-intro.png" alt="A two-and-a-half-hour module, scoped explicitly: preparing a DEV environment, building from the master template, configuring course components, and applying Pitt EDGE standards." loading="lazy"></div>
+            <figcaption>A two-and-a-half-hour module, scoped explicitly: preparing a DEV environment, building from the master template, configuring course components, and applying Pitt EDGE standards.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m4-canvas-training-support.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m4-canvas-training-support.png" alt="Routes designers to the University&#x27;s own Canvas documentation (UCTL) for the mechanics, so this course can stay focused on Pitt EDGE-specific process instead of duplicating Instructure&#x27;s own guides." loading="lazy"></div>
+            <figcaption>Routes designers to the University's own Canvas documentation (UCTL) for the mechanics, so this course can stay focused on Pitt EDGE-specific process instead of duplicating Instructure's own guides.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m4-canvas-environments.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m4-canvas-environments.png" alt="Names all three Canvas environments &amp;mdash; PROD, BETA, TEST &amp;mdash; with the exact banner to watch for so a designer never mistakes a test environment for production." loading="lazy"></div>
+            <figcaption>Names all three Canvas environments &mdash; PROD, BETA, TEST &mdash; with the exact banner to watch for so a designer never mistakes a test environment for production.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m4-dev-shell-naming.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m4-dev-shell-naming.png" alt="A fixed DEV shell naming convention with real examples, plus the DEV-versus-production distinction stated as a rule: all development work happens in DEV, never in the live shell." loading="lazy"></div>
+            <figcaption>A fixed DEV shell naming convention with real examples, plus the DEV-versus-production distinction stated as a rule: all development work happens in DEV, never in the live shell.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m4-homepage-layout.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m4-homepage-layout.png" alt="An interactive hotspot walkthrough of the actual homepage template, letting a new designer explore each section&#x27;s purpose at their own pace instead of reading a wall of labels." loading="lazy"></div>
+            <figcaption>An interactive hotspot walkthrough of the actual homepage template, letting a new designer explore each section's purpose at their own pace instead of reading a wall of labels.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m4-module0-template.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m4-module0-template.png" alt="The standard Module 0 orientation template every course ships with, broken into nine hotspot-explained components so designers understand what&#x27;s customizable and what isn&#x27;t." loading="lazy"></div>
+            <figcaption>The standard Module 0 orientation template every course ships with, broken into nine hotspot-explained components so designers understand what's customizable and what isn't.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m4-designplus.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m4-designplus.png" alt="Introduces Cidi Labs DesignPLUS as the no-code tool behind the master template&#x27;s design consistency, with its own sidebar interface shown directly rather than just described." loading="lazy"></div>
+            <figcaption>Introduces Cidi Labs DesignPLUS as the no-code tool behind the master template's design consistency, with its own sidebar interface shown directly rather than just described.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m4-udoit.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m4-udoit.png" alt="Closes the module with the accessibility tool every course must pass through, naming the specific issue types it catches and the four-step documentation process required afterward." loading="lazy"></div>
+            <figcaption>Closes the module with the accessibility tool every course must pass through, naming the specific issue types it catches and the four-step documentation process required afterward.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="pitt-professional">
+        <div class="module-head">
+          <span class="pill">New Module &middot; Pitt Professional</span>
+          <h2>Pitt Professional</h2>
+        </div>
+        <div class="module-intro">
+          <p>Added after the original module map was set: a dedicated module on Pitt Professional, the platform behind Pitt EDGE's non-credit, professional development, and continuing education offerings. Final module numbering is still being finalized as this gets built out.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/pp-intro.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/pp-intro.png" alt="A 90-minute module with objectives that go beyond definitions &amp;mdash; configuring courses, understanding integrations, and applying branding standards, not just describing the platform." loading="lazy"></div>
+            <figcaption>A 90-minute module with objectives that go beyond definitions &mdash; configuring courses, understanding integrations, and applying branding standards, not just describing the platform.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/pp-overview.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/pp-overview.png" alt="Establishes who actually uses Pitt Professional (working professionals, community members, badge earners &amp;mdash; often without a Pitt email) before any configuration detail." loading="lazy"></div>
+            <figcaption>Establishes who actually uses Pitt Professional (working professionals, community members, badge earners &mdash; often without a Pitt email) before any configuration detail.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/pp-canvas-catalog.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/pp-canvas-catalog.png" alt="Names Canvas Catalog as the &#x27;front door&#x27; to Pitt Professional, with an explicit note that it&#x27;s a separate Canvas environment from Pitt&#x27;s primary academic instance &amp;mdash; an easy assumption to get wrong." loading="lazy"></div>
+            <figcaption>Names Canvas Catalog as the 'front door' to Pitt Professional, with an explicit note that it's a separate Canvas environment from Pitt's primary academic instance &mdash; an easy assumption to get wrong.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/pp-governance.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/pp-governance.png" alt="Ties Pitt Professional back to the same EDGE charter structure that governs every other program, so designers don&#x27;t treat it as a side system with its own rules." loading="lazy"></div>
+            <figcaption>Ties Pitt Professional back to the same EDGE charter structure that governs every other program, so designers don't treat it as a side system with its own rules.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/pp-platform-diagram.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/pp-platform-diagram.png" alt="A single diagram mapping how Canvas Catalog, Canvas LMS, department hosting tiers, and the Panopto/Zoom/Accredible integrations all connect &amp;mdash; the mental model for everything else in the module." loading="lazy"></div>
+            <figcaption>A single diagram mapping how Canvas Catalog, Canvas LMS, department hosting tiers, and the Panopto/Zoom/Accredible integrations all connect &mdash; the mental model for everything else in the module.</figcaption>
+          </figure>
+        </div>
+      </section>
+  </main>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <h3>About this build</h3>
+    <p>Every screenshot above comes from the live, in-development Canvas course. Captions describe the instructional decision behind each screen, not just what's on it. Check back for updates as the remaining modules come online.</p>
+    <p class="contact">Deanna Gilkey Schmuck, MS &mdash; <a href="mailto:deannagilkey@comcast.net">deannagilkey@comcast.net</a> &middot; <a href="mailto:deannagilkey@gmail.com">deannagilkey@gmail.com</a> &middot; <a href="tel:+14123029025">412-302-9025</a></p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded screenshot">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-cap" id="lightboxCap"></div>
+</div>
+
+<script>
+(function(){
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightboxImg');
+  var lbCap = document.getElementById('lightboxCap');
+  var lbClose = document.getElementById('lightboxClose');
+
+  function openLightbox(src, cap){
+    lbImg.src = src;
+    lbImg.alt = cap;
+    lbCap.textContent = cap;
+    lb.classList.add('open');
+  }
+  function closeLightbox(){
+    lb.classList.remove('open');
+    lbImg.src = '';
+  }
+
+  document.querySelectorAll('.shot').forEach(function(el){
+    el.addEventListener('click', function(){
+      var full = el.getAttribute('data-full');
+      var cap = el.querySelector('figcaption').textContent;
+      openLightbox(full, cap);
+    });
+    el.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        el.click();
+      }
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lb.addEventListener('click', function(e){ if(e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.module'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+  function onScroll(){
+    var pos = window.scrollY + 140;
+    var current = sections[0] && sections[0].id;
+    sections.forEach(function(s){
+      if (s.offsetTop <= pos) current = s.id;
+    });
+    links.forEach(function(l){
+      l.classList.toggle('active', l.getAttribute('data-target') === current);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
